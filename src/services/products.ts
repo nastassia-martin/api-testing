@@ -1,4 +1,5 @@
 import axios from "axios"
+import { CreateProduct, Product } from "../types/product"
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -37,16 +38,22 @@ export const del = async (endpoint: string) => {
 /**
  * Get all products
  */
-
+export const getProducts = async () => {
+    return get<Product[]>(`/products`)
+}
 
 /**
  * Get a single product
  */
-
+export const getProduct = async (id: number) => {
+    return get<Product>(`/products<${id}`)
+}
 /**
  * Create a product
  */
-
+export const createProduct = (product: CreateProduct) => {
+    return post<Product>(`/products`, product)
+}
 
 /**
  * Update a - don't need this?
