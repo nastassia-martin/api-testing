@@ -23,6 +23,7 @@ Questions:
 1/ in service folder can't env property doesn't exist on import.meta obj
     ✅ solved : add "types": [ "node", "vite/client" ] in tsconfig
 2/ not sure what type to give images, have given obj for now
+    ✅ solved : modified to add thumbnail & large img inside img obj
 
 
 
@@ -36,8 +37,8 @@ STEPS TO TAKE:
 7. start testing 😎
 
 Testing: what do i need to test? 
-[] GET all products
-[] CREATE a product
+[x] GET all products
+[x] CREATE a product
 [] CREATE & GET a product
 
 [] GET all orders
@@ -54,4 +55,10 @@ What I have done so far:
 6. add types into services: 
   ✅ products,
     orders
-7. 
+7. Attempted first test, but products came back as undefined. Why? 
+Explanation: 
+what we get back is an obj which contains two properties: success & data.
+Status is a boolean & Data contains the list of products. 
+Therefore types must be modified to reflect this - a new type whcih contains status & product arr. 
+Note the products service must be updated. 
+
