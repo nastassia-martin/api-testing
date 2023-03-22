@@ -16,3 +16,42 @@ API-testing med Vitest, axios och jest.
     - Kör `npm test:verbose` för att köra testerna i verbose-läge
     - Kör `npm test:ui` för att köra testerna i UI-läge (se resultatet i en webbläsare)
     - Kör `npm coverage` för att få en test coverage rapport
+
+MY NOTES
+
+Questions: 
+1/ in service folder can't env property doesn't exist on import.meta obj
+    ✅ solved : add "types": [ "node", "vite/client" ] in tsconfig
+2/ not sure what type to give images, have given obj for now
+
+
+
+STEPS TO TAKE:
+1. Go to API PRISMA folder and in the terminal type this command: npm run dev - 
+2. Go to MAMP & run MAMP
+3. install axios
+4. create routes for products & orders
+5. create types for products & orders
+6. create funcs for products & orders & link in appropriate service folders
+7. start testing 😎
+
+Testing: what do i need to test? 
+[] GET all products
+[] CREATE a product
+[] CREATE & GET a product
+
+[] GET all orders
+[] CREATE an order
+[] CREATE & GET an order
+
+
+What I have done so far: 
+1.✅	 run dev in API Prisma folder 
+2.✅	 Run MAMP
+3.✅	 installed axios
+4.✅	 create orders & products service with axios
+5.✅	create types for orders & products 
+6. add types into services: 
+  ✅ products,
+    orders
+7. 
