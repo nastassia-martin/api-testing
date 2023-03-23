@@ -21,3 +21,34 @@ export type Item = {
     item_price: number,
     item_total: number
 }
+
+export type CreateOrderItems = {
+    product_id: number,
+    qty: number,
+    item_price: number,
+    item_total: number
+}
+
+export type CreateOrder = {
+    customer_first_name: string,
+    customer_last_name: string,
+    customer_address: string,
+    customer_postcode: string,
+    customer_city: string,
+    customer_email: string,
+    order_total: number
+    order_items: CreateOrderItems[]
+
+}
+export type OrdersResponse = {
+    status: "success" | "fail" | "error",
+    data: Order[]
+}
+
+export type OrderResponse = {
+    status: "success" | "fail" | "error",
+    data: {
+        Order: Order,
+        Items: Item[]
+    }
+}

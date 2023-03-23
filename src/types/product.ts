@@ -13,12 +13,12 @@ export type Product = {
 }
 
 export type ProductsResponse = {
-    status: string,
+    status: "success" | "fail" | "error",
     data: Product[]
 }
 
 export type ProductResponse = {
-    status: string,
+    status: "success" | "fail" | "error",
     data: Product
 }
 
