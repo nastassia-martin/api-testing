@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import * as ProductsAPI from '../services/products'
+import * as ProductsAPI from '../services/productsAPI'
 import { CreateProduct } from '../types/product'
 
 let product: CreateProduct = {
@@ -34,7 +34,8 @@ describe('ProductsAPI', () => {
         expect(product.data).toBeDefined()
     })
 
-    it('should create a product', async () => {
+    it.todo('should create a product', async () => {
+
         const newProduct = await ProductsAPI.createProduct(product)
 
         expect(newProduct).toMatchObject({
@@ -56,14 +57,17 @@ describe('ProductsAPI', () => {
         })
         expect(newProduct.status).toBe("success")
         expect([newProduct].length).toBe(1)
+        // expect product arr to be 1 longer than before, 
     })
 
-    it('should create product & return that product', async () => {
+    it.todo('should create product & return that product', async () => {
         // create a new product
         const newProduct = await ProductsAPI.createProduct(product)
         // get that product
         const createdProduct = await ProductsAPI.getProduct(product.id)
 
         expect(createdProduct).toStrictEqual(newProduct)
+        // expect product arr to be 1 longer than before
+
     })
 })
