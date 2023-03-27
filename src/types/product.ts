@@ -23,7 +23,6 @@ export type ProductResponse = {
 }
 
 export type CreateProduct = {
-    id: number,
     name: string,
     description: string,
     price: number,

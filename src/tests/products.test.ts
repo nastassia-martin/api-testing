@@ -3,7 +3,7 @@ import * as ProductsAPI from '../services/productsAPI'
 import { CreateProduct } from '../types/product'
 
 let product: CreateProduct = {
-    id: 1,
+    // id: 1,
     name: "test",
     description: "description",
     price: 12,
@@ -26,22 +26,14 @@ describe('ProductsAPI', () => {
         expect([products].length).toBeGreaterThan(0)
     })
 
-    it('should return one product', async () => {
-        const id = 5216
-        // get one product
-        const product = await ProductsAPI.getProduct(id)
-
-        expect(product.data).toBeDefined()
-    })
-
-    it.todo('should create a product', async () => {
+    it('should create a product', async () => {
 
         const newProduct = await ProductsAPI.createProduct(product)
 
         expect(newProduct).toMatchObject({
             status: "success",
             data: {
-                id: product.id,
+                id: expect.any(Number),
                 name: product.name,
                 description: product.description,
                 price: product.price,
@@ -57,17 +49,31 @@ describe('ProductsAPI', () => {
         })
         expect(newProduct.status).toBe("success")
         expect([newProduct].length).toBe(1)
-        // expect product arr to be 1 longer than before, 
+        // expect(newProduct.data.price).not.toBe(0)
+    })
+    it('should create a product with price of 1 or more', async () => {
+        let newPrice = { ...product }
+        newPrice.price = 1
+
+        const newProduct = await ProductsAPI.createProduct(newPrice)
+
+        expect(newProduct.data.price).toBeGreaterThanOrEqual(1)
     })
 
-    it.todo('should create product & return that product', async () => {
+    it('should create a product where stock quantity is 1 or more', async () => {
+        let newQty = { ...product }
+        newQty.stock_quantity = 1
+
+        const newProduct = await ProductsAPI.createProduct(newQty)
+        expect(newProduct.data.stock_quantity).toBeGreaterThanOrEqual(1)
+    })
+    it('should create product & return that product', async () => {
         // create a new product
         const newProduct = await ProductsAPI.createProduct(product)
-        // get that product
-        const createdProduct = await ProductsAPI.getProduct(product.id)
+        // get that product id
+        const createdProduct = await ProductsAPI.getProduct(newProduct.data.id)
 
         expect(createdProduct).toStrictEqual(newProduct)
         // expect product arr to be 1 longer than before
-
     })
 })
