@@ -25,7 +25,6 @@ describe('ProductsAPI', () => {
         expect(Array.isArray(products.data)).toBe(true)
         expect([products].length).toBeGreaterThan(0)
     })
-
     it('should create a product', async () => {
 
         const newProduct = await ProductsAPI.createProduct(product)
@@ -49,7 +48,6 @@ describe('ProductsAPI', () => {
         })
         expect(newProduct.status).toBe("success")
         expect([newProduct].length).toBe(1)
-        // expect(newProduct.data.price).not.toBe(0)
     })
     it('should create a product with price of 1 or more', async () => {
         let newPrice = { ...product }
@@ -59,8 +57,7 @@ describe('ProductsAPI', () => {
 
         expect(newProduct.data.price).toBeGreaterThanOrEqual(1)
     })
-
-    it('should create a product where stock quantity is 1 or more', async () => {
+    it('should not create a product where stock quantity is 1 or more', async () => {
         let newQty = { ...product }
         newQty.stock_quantity = 1
 
@@ -74,6 +71,12 @@ describe('ProductsAPI', () => {
         const createdProduct = await ProductsAPI.getProduct(newProduct.data.id)
 
         expect(createdProduct).toStrictEqual(newProduct)
-        // expect product arr to be 1 longer than before
+        expect([createdProduct].length).toBe(1)
+        expect(product.price).toBeGreaterThan(0)
+        expect(product.name.length).toBeGreaterThanOrEqual(2)
+        expect(product.description.length).toBeGreaterThanOrEqual(5)
+        expect(product.price).toBeGreaterThanOrEqual(1)
+        expect(product.images.thumbnail).toMatch(/png/)
+        expect(newProduct.data.images.large).toMatch(/png/)
     })
 })
