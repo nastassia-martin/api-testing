@@ -10,7 +10,8 @@ export type Order = {
     customer_phone?: number | null
     order_total: number,
     created_at: Date,
-    updated_at: Date
+    updated_at: Date,
+    Items?: Item[]
 }
 
 export type Item = {
@@ -47,8 +48,5 @@ export type OrdersResponse = {
 
 export type OrderResponse = {
     status: "success" | "fail" | "error",
-    data: {
-        Order: Order,
-        Items: Item[]
-    }
+    data: Order,
 }

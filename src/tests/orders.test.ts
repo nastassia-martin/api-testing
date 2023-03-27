@@ -31,15 +31,29 @@ describe('OrdersAPI', () => {
         expect([orders].length).toBeGreaterThan(0)
     })
 
-    it.todo('should create a new order', async () => {
+    it('should create a new order', async () => {
         const newOrder = await OrdersAPI.createOrder(order)
 
         expect(newOrder.status).toBe("success")
+        expect(newOrder.data).toMatchObject({
+            id: expect.any(Number),
+            customer_first_name: order.customer_first_name,
+            customer_last_name: order.customer_last_name,
+            customer_address: order.customer_address,
+            customer_postcode: order.customer_postcode,
+            customer_city: order.customer_city,
+            customer_email: order.customer_email,
+            order_total: order.order_total,
+            Items: order.order_items
+        })
+        expect([newOrder].length).toBe(1)
     })
 
-    it.todo('should create and then return that order', async () => {
+    it('should create and then return that order', async () => {
 
         const newOrder = await OrdersAPI.createOrder(order)
-        // const createdOrder = await OrdersAPI.getOrder() // need to get the ID from the order, so must include in type
+        const createdOrder = await OrdersAPI.getOrder(newOrder.data.id) // need to get the ID from the order, so must include in type
+
+        expect(createdOrder.data).toStrictEqual(newOrder.data)
     })
 })
